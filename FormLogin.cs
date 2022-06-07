@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace LoginForm
 {
-    public partial class LoginForm : Form
+    public partial class FormLogin : Form
     {
-        public LoginForm()
+        public FormLogin()
         {
             InitializeComponent();
         }
@@ -30,14 +30,13 @@ namespace LoginForm
             {
                 MessageBox.Show("Invalid Username or Password!");
             }
-            else
-            if (txtPassword.Text.TrimStart() == string.Empty)
+            else if (txtPassword.Text.TrimStart() == string.Empty)
             {
                 MessageBox.Show("Please Enter Password!");
             }
             else
             {
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-VAN28TB;Initial Catalog=VPRO;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=VPRO-SRVR1;Initial Catalog=VPRO;Integrated Security=True");
                 SqlCommand cmd = new SqlCommand("select * from UserLogin where Username=@Username and Password =@Password", con);
                 cmd.Parameters.AddWithValue("@Username", txtUserName.Text);
                 cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
@@ -51,7 +50,7 @@ namespace LoginForm
                 if(dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Successfully logged in");
-                    Form1 form1 = new Form1();
+                    WelcomePage form1 = new WelcomePage();
                     this.Hide();
                     form1.Show();
                 }
@@ -70,7 +69,7 @@ namespace LoginForm
         }
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RegisterForm Rs = new RegisterForm();
+            FormRegister Rs = new FormRegister();
             this.Hide();
             Rs.Show();
         }

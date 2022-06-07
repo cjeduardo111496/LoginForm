@@ -1,7 +1,7 @@
 ﻿
 namespace LoginForm
 {
-    partial class Form1
+    partial class WelcomePage
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace LoginForm
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomePage));
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.Button();

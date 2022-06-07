@@ -11,32 +11,30 @@ using System.Data.SqlClient;
 
 namespace LoginForm
 {
-    public partial class RegisterForm : Form
+    public partial class FormRegister : Form
     {
-        public RegisterForm()
+        public FormRegister()
         {
             InitializeComponent();
         }
 
         private void btnSumbit_Click(object sender, EventArgs e)
         {
-            if (txtAddress.Text.TrimStart() == string.Empty)
+            if(txtAddress.Text.TrimStart() == string.Empty)
             {
                 MessageBox.Show("Email Must Be Indicated");
             }
-            else
-            if (txtUserName.Text.TrimStart() == string.Empty | txtUserName.Text.Length < 5)
+            else if (txtUserName.Text.TrimStart() == string.Empty | txtUserName.Text.Length < 5)
             {
                 MessageBox.Show("Username Must Contain at Least 5 Minimum Character!");
             }
-            else
-            if (txtPassWord.Text.TrimStart() == string.Empty | txtPassWord.Text.Length < 8)
+            else if (txtPassWord.Text.TrimStart() == string.Empty | txtPassWord.Text.Length < 8)
             {
                 MessageBox.Show("Password Must Contain at Least 8 Minimum Character!");
             }
             else
             {
-                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-VAN28TB;Initial Catalog=VPRO;Integrated Security=True");
+                SqlConnection conn = new SqlConnection("Data Source=VPRO-SRVR1;Initial Catalog=VPRO;Integrated Security=True");
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("Select * from UserLogin where Username= @Username", conn);
                 cmd.Parameters.AddWithValue("@Username", this.txtUserName.Text);
@@ -47,20 +45,6 @@ namespace LoginForm
                     MessageBox.Show(string.Format("Username {0} already exist", this.txtUserName.Text));
                     Clear();
                 }
-
-              
-                /*SqlConnection conn = new SqlConnection("Data Source=VPRO-SRVR1;Initial Catalog=VPRO;Integrated Security=True");
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("select * from UserLogin where Username= '" + txtUserName + "'", conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.HasRows == true)
-                {
-                 
-                    MessageBox.Show("Username already exists - please try another ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                */
-                
                 else
                 {
                         cmd = new SqlCommand("Register", conn);
@@ -73,28 +57,23 @@ namespace LoginForm
                         cmd.Parameters.AddWithValue("@Password", txtPassWord.Text.Trim());
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Registration is Successful");
-                        LoginForm form1 = new LoginForm();
+                        FormLogin form1 = new FormLogin();
                         this.Hide();
                         form1.Show();
-
-                }
-               
-                void Clear()
-                {
-                    txtUserName.Text = txtPassWord.Text = txtConfirmPassword.Text = "";
-
-                }
-           
+                }   
             }
         }
 
-
+        private void Clear()
+        {
+            txtUserName.Text = txtPassWord.Text = txtConfirmPassword.Text = "";
+        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             foreach (Form frm in Application.OpenForms)
             {
-                if (frm is LoginForm)
+                if (frm is FormLogin)
                 {
                     frm.Show();
                 }
@@ -102,7 +81,6 @@ namespace LoginForm
             Close();
             //Application.Restart();
         }
-
 
         private void button3_Click(object sender, EventArgs e)
         {

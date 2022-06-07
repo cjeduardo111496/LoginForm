@@ -1,7 +1,7 @@
 ﻿
 namespace LoginForm
 {
-    partial class RegisterForm
+    partial class FormRegister
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace LoginForm
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegister));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
